@@ -1,0 +1,21 @@
+<MvASSIGN NAME = "l.active" VALUE = "y">
+
+<MvOPEN NAME 		= "ADD_DB_ALIAS_HERE" 
+		DATABASE 	= "ADD_DB_NAME_HERE@localhost" 
+		TYPE 		= "mysql"
+    USERNAME 	= "{ 'ADD_DB_USER_HERE' }" 
+		PASSWORD 	= "{ 'ADD_DB_PASSWORD_HERE' }">
+
+<MvOPENVIEW NAME 	= "ADD_DB_ALIAS_HERE" 
+			VIEW 	= "ADD_DB_VIEW_HERE" 
+			QUERY 	= "{ 'SELECT
+							* 
+						  FROM
+						  	ADD_DB_TABLE_HERE
+						  WHERE
+						  	ACTIVE	= ? AND 
+							ID >= FLOOR( 1 + RAND() * ( SELECT MAX(ID) FROM ADD_DB_TABLE_HERE ) )
+						  LIMIT 1' }"
+			FIELDS 	= "l.active">
+
+<MvEVAL EXPR = "{ ADD_DB_VIEW_HERE.d.CONTENT }">
